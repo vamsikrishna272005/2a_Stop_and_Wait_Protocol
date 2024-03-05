@@ -11,24 +11,36 @@ To write a python program to perform stop and wait protocol
 ## PROGRAM
 # CLIENT:-
 ```
-import socket s=socket.socket() s.bind(('localhost',8000)) s.listen(5) c,addr=s.accept()
-size=int(input("Enter number of frames to send: ")) l=list(range(size)) s=int(input("Enter Window
-size:")) st=0 i=0
+import socket
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+while True:
+    i=input("Enter a data: ")
+    c.send(i.encode())
+    ack=c.recv(1024).decode()
+    if ack:
+        print(ack)
+        continue
+    else:
+        c.close()
+        break
 ```
 # SERVER:-
 ```
-while True: Thus, python program to perform stop and wait protocol was successfully executed
-while(i<len(l)): st+=s
-c.send(str(l[i:st]).encode())
-ack=c.recv(1024).decode()
-if ack:
-print(ack)
-i+=s
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+while True:
+ print(s.recv(1024).decode())
+ s.send("Acknowledgement Recieved".encode())
 ```
 ## OUTPUT
 # CLINT:-
-![Screenshot 2024-02-28 015659](https://github.com/vamsikrishna272005/2a_Stop_and_Wait_Protocol/assets/147477015/8190c24c-883a-4004-81a3-496d2a80a051)
+![Screenshot 2024-03-05 154139](https://github.com/vamsikrishna272005/2a_Stop_and_Wait_Protocol/assets/147477015/a39d0847-f15e-463f-9356-00c0c40ca10c)
 # SERVER:-
-![Screenshot 2024-02-28 015717](https://github.com/vamsikrishna272005/2a_Stop_and_Wait_Protocol/assets/147477015/5a695c60-9288-4f91-a991-4cebacc4f566)
+![Screenshot 2024-03-05 154156](https://github.com/vamsikrishna272005/2a_Stop_and_Wait_Protocol/assets/147477015/39f6cffa-fa72-4ef0-b26f-09f44af81c9b)
+![Screenshot 2024-03-05 154247](https://github.com/vamsikrishna272005/2a_Stop_and_Wait_Protocol/assets/147477015/a487ccd0-d297-4f74-b511-4ad95c7a35e5)
 ## RESULT
 Thus, python program to perform stop and wait protocol was successfully executed.
